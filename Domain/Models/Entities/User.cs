@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models.Common;
 
-namespace Domain.Models.Entities
+namespace Domain.Models.Entities;
+
+public class User:BaseAuditableEntity
 {
-    internal class User
-    {
-    }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? UserName { get; set; }
+    public string? PasswordHash { get; set; }
+    public string? Email { get; set; }
+    public string? PhoneNumber { get; set; }
+
+    public virtual ICollection<Role>? Roles { get; set; }
 }

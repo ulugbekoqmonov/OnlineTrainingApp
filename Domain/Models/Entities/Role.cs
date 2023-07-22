@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models.Common;
 
-namespace Domain.Models.Entities
+namespace Domain.Models.Entities;
+
+public class Role:BaseAuditableEntity
 {
-    internal class Role
-    {
-    }
+    public string? RoleName { get; set; }
+
+    public virtual ICollection<User>? Users { get; set; }
+    public virtual ICollection<Permission>? Permissions { get; set; }
 }
