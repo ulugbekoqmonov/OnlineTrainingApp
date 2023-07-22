@@ -20,4 +20,9 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CQRS\Role\" />
+    <Folder Include="CQRS\Permission\" />
+  </ItemGroup>
+
 </Project>

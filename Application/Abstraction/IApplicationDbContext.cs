@@ -8,4 +8,5 @@ public interface IApplicationDbContext
     public DbSet<User> Users { get; }
     public DbSet<Role> Roles { get; }
     public DbSet<Permission> Permissions { get; }
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
