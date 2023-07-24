@@ -5,12 +5,11 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.CQRS.User.CreateUserCommand;
+namespace Application.CQRS.Users.CreateUserCommand;
 
-public class CreateUserCommand:IRequest<CreateUserCommandResponse>
+public record CreateUserCommand:IRequest<CreateUserCommandResponse>
 {
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+    public string? FullName { get; set; }    
     public string? UserName { get; set; }
     public string? Password { get; set; }
     public string? ConfirmPassword { get; set; }
@@ -31,12 +30,11 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Creat
     public async Task<CreateUserCommandResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         if (_applicationDbContext.Users.Any(x => x.UserName == request.UserName))
-            throw new AllreadyExistsException(nameof(User), request.UserName);
+            throw new AllreadyExistsException(nameof(Users), request.UserName);
 
         Domain.Models.Entities.User user = new()
         {
-            FirstName = request.FirstName,
-            LastName = request.LastName,
+            FullName = request.FullName,            
             UserName = request.UserName,
             PasswordHash = request.Password.GetHashString(),
             Email = request.Email,
@@ -54,11 +52,10 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Creat
     }
 }
 
-public class CreateUserCommandResponse
+public record CreateUserCommandResponse
 {
     public Guid Id { get; set; }
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+    public string? FullName { get; set; }    
     public string? UserName { get; set; }    
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }

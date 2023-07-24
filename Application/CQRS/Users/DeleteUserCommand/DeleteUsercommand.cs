@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.CQRS.User.CreateUserCommand
+namespace Application.CQRS.Users.DeleteUserCommand
 {
-    internal class GetAllUserQuery
+    internal class DeleteUsercommand
     {
     }
 }

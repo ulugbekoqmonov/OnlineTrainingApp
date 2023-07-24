@@ -1,4 +1,4 @@
-﻿using Application.CQRS.User.CreateUserCommand;
+﻿using Application.CQRS.Users.CreateUserCommand;
 using AutoMapper;
 using Domain.Models.Entities;
 

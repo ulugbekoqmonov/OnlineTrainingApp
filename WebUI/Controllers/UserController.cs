@@ -1,4 +1,4 @@
-﻿using Application.CQRS.User.CreateUserCommand;
+﻿using Application.CQRS.Users.CreateUserCommand;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebUI.Controllers

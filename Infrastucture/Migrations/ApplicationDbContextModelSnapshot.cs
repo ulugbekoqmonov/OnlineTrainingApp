@@ -62,7 +62,7 @@ namespace Infrastucture.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Domain.Models.Entities.User", b =>
+            modelBuilder.Entity("Domain.Models.Entities.Users", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,7 +150,7 @@ namespace Infrastucture.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.Entities.User", null)
+                    b.HasOne("Domain.Models.Entities.Users", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
