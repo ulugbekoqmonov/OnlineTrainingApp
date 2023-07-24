@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
+using System.Security.Cryptography;
 
-namespace Application.Extensions
+namespace Application.Extensions;
+
+public static class StringExtension
 {
-    internal class StringExtension
+    public static string GetHashString(this string text)
     {
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(text);
+            byte[] hashbytes = sha256.ComputeHash(bytes);
+            text = Convert.ToBase64String(hashbytes);
+
+        }
+        return text;
     }
 }

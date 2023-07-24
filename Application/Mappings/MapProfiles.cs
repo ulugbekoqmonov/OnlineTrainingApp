@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Application.CQRS.User.CreateUserCommand;
+using AutoMapper;
+using Domain.Models.Entities;
 
-namespace Application.Mappings
+namespace Application.Mappings;
+
+public class UserMapping:Profile
 {
-    internal class MapProfiles
+    public UserMapping()
     {
+        CreateMap<CreateUserCommandResponse, User>().ReverseMap();
     }
 }

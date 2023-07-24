@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebUI.Controllers
 {
     public class BaseController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        protected IMediator _mediator => HttpContext.RequestServices.GetRequiredService<IMediator>();
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Application.Exceptions;
 
-namespace Application.Exceptions
+public class AllreadyExistsException:Exception
 {
-    internal class AllreadyExistsException:Exception
-    {
-    }
+    public AllreadyExistsException()
+            : base() { }
+
+    public AllreadyExistsException(string name, string key)
+        : base($"Entity \"{name}\" ({key}) already exists") { }
 }
