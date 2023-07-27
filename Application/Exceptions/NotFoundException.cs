@@ -3,5 +3,5 @@
 public class NotFoundException:Exception
 {
     public NotFoundException() : base() { }
-    public NotFoundException(string message):base($"{message} Not Found") { }
+    public NotFoundException(string name, object? key = null):base($"{name} ({key}) Not Found") { }
 }

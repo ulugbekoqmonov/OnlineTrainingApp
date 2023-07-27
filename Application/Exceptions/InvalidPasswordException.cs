@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Application.Exceptions;
 
-namespace Application.Exceptions
+public class InvalidPasswordException:Exception
 {
-    internal class InvalidPasswordException
-    {
+    public InvalidPasswordException() : base() { }
+    public InvalidPasswordException(string message):base("Invalid password")
+    {            
     }
 }
