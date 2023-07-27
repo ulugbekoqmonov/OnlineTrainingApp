@@ -5,11 +5,11 @@ using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.CQRS.Users.CreateUserCommand;
+namespace Application.CQRS.Users.Commands.CreateUser;
 
-public record CreateUserCommand:IRequest<CreateUserCommandResponse>
+public record CreateUserCommand : IRequest<CreateUserCommandResponse>
 {
-    public string? FullName { get; set; }    
+    public string? FullName { get; set; }
     public string? UserName { get; set; }
     public string? Password { get; set; }
     public string? ConfirmPassword { get; set; }
@@ -34,7 +34,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Creat
 
         Domain.Models.Entities.User user = new()
         {
-            FullName = request.FullName,            
+            FullName = request.FullName,
             UserName = request.UserName,
             PasswordHash = request.Password.GetHashString(),
             Email = request.Email,
@@ -42,7 +42,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Creat
         };
 
         var entry = await _applicationDbContext.Users.AddAsync(user);
-        if(entry.State is EntityState.Added)
+        if (entry.State is EntityState.Added)
         {
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
         }
@@ -55,8 +55,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Creat
 public record CreateUserCommandResponse
 {
     public Guid Id { get; set; }
-    public string? FullName { get; set; }    
-    public string? UserName { get; set; }    
+    public string? FullName { get; set; }
+    public string? UserName { get; set; }
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }
 }

@@ -1,12 +1,12 @@
 ﻿using Application.Abstraction;
 using Application.Exceptions;
-using Domain.Models.Entities;
+using Application.Extensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.CQRS.Users.UpdateUserCommand;
+namespace Application.CQRS.Users.Commands.UpdateUser;
 
-public record UpdateUserCommand:IRequest
+public record UpdateUserCommand : IRequest
 {
     public Guid Id { get; set; }
     public string? FullName { get; set; }
@@ -29,14 +29,23 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand>
 
     public async Task Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _dbContext.Users.FirstOrDefaultAsync(u=>u.Id.Equals(request.Id));
+        var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id.Equals(request.Id));
         if (user is null)
         {
             throw new NotFoundException(request.Id.ToString());
         }
+        else if (!user.PasswordHash.Equals(request.Password.GetHashString()))
+        {
+            throw new InvalidPasswordException(request.Password);
+        }
         else
         {
-            var user = new User();           
+            user.FullName = request.FullName;
+            user.UserName = request.UserName;
+            user.PasswordHash = request.NewPassword.GetHashString();
+            user.Email = request.Email;
+            user.PhoneNumber = request.PhoneNumber;
+            _dbContext.Users.Update(user);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 

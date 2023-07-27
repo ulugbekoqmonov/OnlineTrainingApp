@@ -1,10 +1,11 @@
 ﻿using Application.Abstraction;
 using Application.Exceptions;
 using AutoMapper;
+using Domain.Models.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.CQRS.Users.CreateUserCommand;
+namespace Application.CQRS.Users.Queries;
 
 public record GetByIdUserQuery:IRequest<GetByIdUserQueryResponse>
 {
@@ -39,4 +40,5 @@ public record GetByIdUserQueryResponse
     public string? UserName { get; set; }
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }
+    public ICollection<Role>? Roles { get; set; }
 }

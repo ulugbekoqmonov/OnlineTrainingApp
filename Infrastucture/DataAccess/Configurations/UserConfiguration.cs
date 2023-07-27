@@ -10,11 +10,7 @@ public class UserConfiguration
         builder.HasKey(user => user.Id);
 
         builder
-            .Property(u => u.FirstName)
-            .HasMaxLength(50);
-
-        builder
-            .Property(u => u.LastName)
+            .Property(u => u.FullName)
             .HasMaxLength(50);
 
         builder.Property(u => u.UserName)
@@ -31,5 +27,9 @@ public class UserConfiguration
             .HasMaxLength(14);
         builder.HasIndex(u => u.PhoneNumber)
             .IsUnique();
+
+        builder
+            .Property(u => u.ImageName)
+            .HasMaxLength(100);
     }
 }

@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Role\" />
     <Folder Include="CQRS\Permission\" />
+    <Folder Include="CQRS\Roles\Commands\UpdateRole\" />
   </ItemGroup>
 
 </Project>
