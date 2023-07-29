@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastucture.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230721063313_UserRolePermission")]
-    partial class UserRolePermission
+    [Migration("20230729112003_QuestionInnerCategory")]
+    partial class QuestionInnerCategory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Infrastucture.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Models.Entities.Permissions", b =>
+            modelBuilder.Entity("Domain.Models.Entities.Permission", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace Infrastucture.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Domain.Models.Entities.Users", b =>
+            modelBuilder.Entity("Domain.Models.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,14 +77,14 @@ namespace Infrastucture.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageName")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -132,7 +132,7 @@ namespace Infrastucture.Migrations
 
             modelBuilder.Entity("PermissionRole", b =>
                 {
-                    b.HasOne("Domain.Models.Entities.Permissions", null)
+                    b.HasOne("Domain.Models.Entities.Permission", null)
                         .WithMany()
                         .HasForeignKey("PermissionsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -153,7 +153,7 @@ namespace Infrastucture.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.Entities.Users", null)
+                    b.HasOne("Domain.Models.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)

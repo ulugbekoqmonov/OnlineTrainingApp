@@ -11,6 +11,7 @@ public static class Startup
         {
             config.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
         });
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
         return services;
     }
 }

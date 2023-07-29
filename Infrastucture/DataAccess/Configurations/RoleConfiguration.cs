@@ -12,5 +12,7 @@ public class RoleConfiguration
         builder.Property(role=>role.RoleName)
             .IsRequired()
             .HasMaxLength(50);
+        builder.HasIndex(role => role.RoleName)
+            .IsUnique(true);
     }
 }

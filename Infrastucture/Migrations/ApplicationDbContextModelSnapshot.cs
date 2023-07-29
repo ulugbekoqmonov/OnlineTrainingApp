@@ -62,7 +62,7 @@ namespace Infrastucture.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Domain.Models.Entities.Users", b =>
+            modelBuilder.Entity("Domain.Models.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,14 +74,14 @@ namespace Infrastucture.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<string>("FirstName")
+                    b.Property<string>("FullName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ImageName")
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -150,7 +150,7 @@ namespace Infrastucture.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.Entities.Users", null)
+                    b.HasOne("Domain.Models.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
