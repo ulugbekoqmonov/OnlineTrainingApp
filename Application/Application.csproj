@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Permission\" />
     <Folder Include="CQRS\Roles\Commands\UpdateRole\" />
   </ItemGroup>
 

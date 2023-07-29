@@ -12,5 +12,7 @@ public class PermissionConfiguration
         builder.Property(per => per.PermissionName)
             .IsRequired()
             .HasMaxLength(50);
+        builder.HasIndex(per => per.PermissionName)
+            .IsUnique(true);
     }
 }

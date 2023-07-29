@@ -1,4 +1,5 @@
-﻿using Domain.Models.Common;
+﻿using Domain.Enums;
+using Domain.Models.Common;
 
 namespace Domain.Models.Entities;
 
@@ -6,6 +7,7 @@ public class InnerCategory:BaseAuditableEntity
 {
     public string? Name { get; set; }
     public string? Description { get; set; }
+    public Category Category { get; set; }
 
     public Guid UserId { get; set; }
     public virtual User? User { get; set; }
